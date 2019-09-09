@@ -1,0 +1,50 @@
+<!--
+  ~ Copyright (c) 2012-2018 Grab Taxi Holdings PTE LTD (GRAB), All Rights Reserved. NOTICE: All information contained herein is, and remains the property of GRAB. The intellectual and technical concepts contained herein are confidential, proprietary and controlled by GRAB and may be covered by patents, patents in process, and are protected by trade secret or copyright law.
+  ~ You are strictly forbidden to copy, download, store (in any medium), transmit, disseminate, adapt or change this material in any way unless prior written permission is obtained from GRAB. Access to the source code contained herein is hereby forbidden to anyone except current GRAB employees or contractors with binding Confidentiality and Non-disclosure agreements explicitly covering such access.
+  ~
+  ~ The copyright notice above does not evidence any actual or intended publication or disclosure of this source code, which includes information that is confidential and/or proprietary, and is a trade secret, of GRAB.
+  ~ ANY REPRODUCTION, MODIFICATION, DISTRIBUTION, PUBLIC PERFORMANCE, OR PUBLIC DISPLAY OF OR THROUGH USE OF THIS SOURCE CODE WITHOUT THE EXPRESS WRITTEN CONSENT OF GRAB IS STRICTLY PROHIBITED, AND IN VIOLATION OF APPLICABLE LAWS AND INTERNATIONAL TREATIES. THE RECEIPT OR POSSESSION OF THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT MAY DESCRIBE, IN WHOLE OR IN PART.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="80dp"
+    android:height="80dp"
+    android:viewportWidth="80"
+    android:viewportHeight="80">
+  <path
+      android:pathData="M40,0L40,0A40,40 0,0 1,80 40L80,40A40,40 0,0 1,40 80L40,80A40,40 0,0 1,0 40L0,40A40,40 0,0 1,40 0z"
+      android:strokeWidth="1"
+      android:fillColor="#66D095"
+      android:fillType="evenOdd"
+      android:strokeColor="#00000000"/>
+  <path
+      android:pathData="M40,5L40,5A35,35 0,0 1,75 40L75,40A35,35 0,0 1,40 75L40,75A35,35 0,0 1,5 40L5,40A35,35 0,0 1,40 5z"
+      android:strokeWidth="1"
+      android:fillType="evenOdd"
+      android:strokeColor="#00000000">
+    <aapt:attr name="android:fillColor">
+      <gradient 
+          android:startY="53.275867"
+          android:startX="40"
+          android:endY="75"
+          android:endX="40"
+          android:type="linear">
+        <item android:offset="0" android:color="#FFFFFFFF"/>
+        <item android:offset="1" android:color="#FFF0EEEE"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+  <path
+      android:pathData="M38.6321,79.5875C30.477,79.1996 23.1267,75.9487 17.5,70.8578C18.8067,65.1972 22.9667,63.0736 28.6685,61.173C33.2655,59.6406 47.0221,59.5777 51.8079,61.173C57.3672,63.0261 61.6382,65.2215 62.9352,70.8869C56.5109,76.6833 47.9024,80.0481 38.6321,79.5875Z"
+      android:strokeWidth="1"
+      android:fillColor="#66D095"
+      android:fillType="evenOdd"
+      android:strokeColor="#00000000"/>
+  <path
+      android:pathData="M34.1103,52.8752C28.3164,48.9647 25,45.4909 25,39.3939L25,34.5455C25,26.5236 31.5236,20 39.5455,20C47.5673,20 54.0909,26.5236 54.0909,34.5455L54.0909,39.3939C54.0909,45.4933 50.7733,48.9675 44.9782,52.8776C42.0076,54.8818 37.0332,54.8479 34.1103,52.8752Z"
+      android:strokeWidth="1"
+      android:fillColor="#66D095"
+      android:fillType="evenOdd"
+      android:strokeColor="#00000000"/>
+</vector>

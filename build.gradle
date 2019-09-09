@@ -46,6 +46,7 @@ ext {
     rxJavaVersion = "2.2.12"
     rxAndroidVersion = "2.1.1"
     rxRelayVersion = "2.1.1"
+    rxKotlinVersion = "2.3.0"
 
     junitVersion = '4.12'
     mockitoVersion = '1.10.19'
