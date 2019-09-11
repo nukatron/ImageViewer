@@ -1,4 +1,4 @@
-package com.nutron.imageviewer.di
+package com.nutron.imageviewer.module.di
 
 
 const val DI_NAME_VALUE_LOCAL_DATA_SOURCE = "DI_NAME_VALUE_LOCAL_DATA_SOURCE"

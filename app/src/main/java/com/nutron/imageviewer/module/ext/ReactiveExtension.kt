@@ -1,11 +1,7 @@
-package com.nutron.imageviewer.ext
+package com.nutron.imageviewer.module.ext
 
 import io.reactivex.Notification
 import io.reactivex.Observable
-import io.reactivex.ObservableSource
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.BiFunction
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun <T> Observable<Notification<T>>.elements() = this.filter { it.value != null }.map { it.value!! }

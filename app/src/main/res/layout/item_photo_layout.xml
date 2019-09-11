@@ -1,102 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@android:color/white"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="@dimen/small_margin">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/item_img"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/item_description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:srcCompat="@drawable/ic_launcher_background" />
+        android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_description"
-        style="@style/image_description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginStart="@dimen/medium_margin"
-        android:layout_marginEnd="@dimen/medium_margin"
-        app:layout_constraintTop_toBottomOf="@id/item_img"
-        app:layout_constraintBottom_toTopOf="@+id/profile_line_view"
-        android:visibility="visible"
-        tools:text="dsdsdsdsd"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:srcCompat="@drawable/ic_launcher_background" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/item_like_img"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:src="@drawable/ic_heart"
-        android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginStart="@dimen/high_margin"
-        android:layout_marginEnd="@dimen/high_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="@dimen/small_margin"
-        app:layout_constraintTop_toBottomOf="@id/item_description"
-        app:layout_constraintBottom_toTopOf="@+id/profile_line_view"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_description"
+            style="@style/image_description"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_img"
+            tools:text="dsdsdsdsd" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_like_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:textSize="8sp"
-        android:textColor="#888888"
-        android:layout_marginStart="@dimen/small_margin"
-        app:layout_constraintStart_toEndOf="@+id/item_like_img"
-        app:layout_constraintTop_toTopOf="@id/item_like_img"
-        app:layout_constraintBottom_toBottomOf="@+id/item_like_img"
-        android:visibility="visible"
-        tools:text="10"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_like_img"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="@dimen/high_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/high_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:src="@drawable/ic_heart"
+            app:layout_constraintBottom_toTopOf="@+id/profile_line_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_description" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/profile_line_view"
-        android:layout_width="match_parent"
-        android:layout_height="0.67dp"
-        android:background="#1c1c1c"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_like_img"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_like_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:includeFontPadding="false"
+            android:textColor="#888888"
+            android:textSize="8sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/item_like_img"
+            app:layout_constraintStart_toEndOf="@+id/item_like_img"
+            app:layout_constraintTop_toTopOf="@id/item_like_img"
+            tools:text="10" />
 
-        app:layout_constraintBottom_toTopOf="@+id/item_user_profile_img"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/profile_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="0.67dp"
+            android:background="#1c1c1c"
+            app:layout_constraintBottom_toTopOf="@+id/item_user_profile_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/item_user_profile_img"
-        android:layout_width="@dimen/user_profile_width"
-        android:layout_height="@dimen/user_profile_height"
-        android:layout_margin="@dimen/medium_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/item_user_name"
-        app:layout_constraintTop_toBottomOf="@+id/profile_line_view"
-        tools:srcCompat="@drawable/ic_avatar" />
+            app:layout_constraintTop_toBottomOf="@id/item_like_img" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_user_name"
-        style="@style/txt_title"
-        android:layout_marginStart="@dimen/medium_margin"
-        app:layout_constraintBottom_toTopOf="@+id/item_user_social_account"
-        app:layout_constraintStart_toEndOf="@+id/item_user_profile_img"
-        app:layout_constraintTop_toTopOf="@+id/item_user_profile_img"
-        tools:text="User Name"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_user_profile_img"
+            android:layout_width="@dimen/user_profile_width"
+            android:layout_height="@dimen/user_profile_height"
+            android:layout_margin="@dimen/medium_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/item_user_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_line_view"
+            tools:srcCompat="@drawable/ic_avatar" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_user_social_account"
-        style="@style/txt_description_one_line"
-        android:layout_marginStart="@dimen/medium_margin"
-        app:layout_constraintBottom_toBottomOf="@+id/item_user_profile_img"
-        app:layout_constraintStart_toStartOf="@+id/item_user_name"
-        app:layout_constraintTop_toBottomOf="@+id/item_user_name"
-        tools:text="/@instagram" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_user_name"
+            style="@style/txt_title"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            app:layout_constraintBottom_toTopOf="@+id/item_user_social_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/item_user_profile_img"
+            app:layout_constraintTop_toTopOf="@+id/item_user_profile_img"
+            app:layout_constrainedWidth="true"
+            tools:text="User Name" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_user_social_account"
+            style="@style/txt_description_one_line"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/item_user_profile_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/item_user_name"
+            app:layout_constraintTop_toBottomOf="@+id/item_user_name"
+            app:layout_constrainedWidth="true"
+            tools:text="/@instagram" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

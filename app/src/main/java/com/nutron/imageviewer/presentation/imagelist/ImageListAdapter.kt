@@ -8,7 +8,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nutron.imageviewer.R
-import com.nutron.imageviewer.extdi.ImageLoader
+import com.nutron.imageviewer.module.extdi.ImageLoader
 import com.nutron.imageviewer.presentation.entity.ImageUiData
 
 interface OnImageListItemClickListener {
@@ -58,10 +58,18 @@ class ImageListAdapter(
         val likeCountTxt = view.findViewById<AppCompatTextView>(R.id.item_like_count)
 
         fun bindData(data: ImageUiData) {
-            imageLoader.into(data.imageUrl, imageView)
-            imageLoader.into(data.userProfileThumbnail ?: "", profileImage)
+            imageLoader.load(data.imageUrl)
+                .placeholder(R.drawable.ic_launcher_background)
+                .centerCrop()
+                .into(imageView)
+
+            imageLoader.load(data.userProfileThumbnail)
+                .placeholder(R.drawable.ic_avatar)
+                .circleCrop()
+                .into(profileImage)
+
             userName.text = data.username
-            userAccount.text = data.username
+            userAccount.text = data.userSocialAccount
             likeCountTxt.text = data.likes.toString()
             if (data.description != null) {
                 description.text = data.description

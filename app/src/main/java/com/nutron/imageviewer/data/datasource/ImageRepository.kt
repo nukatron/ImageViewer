@@ -25,7 +25,6 @@ class ImageRepositoryImpl(
     private fun fetchFromRemote(): Observable<List<ImageData>> {
         return remoteDataSource
             .getImages()
-            .onErrorReturnItem(emptyList())
             .flatMap { data ->
                 if(data.isNotEmpty()) {
                     storeImageDataSource.saveImages(data)

@@ -1,4 +1,4 @@
-package com.nutron.imageviewer.di
+package com.nutron.imageviewer.module.di
 
 import javax.inject.Scope
 

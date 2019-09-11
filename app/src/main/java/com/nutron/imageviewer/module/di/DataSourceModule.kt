@@ -1,4 +1,4 @@
-package com.nutron.imageviewer.di
+package com.nutron.imageviewer.module.di
 
 import android.content.Context
 import com.google.gson.Gson

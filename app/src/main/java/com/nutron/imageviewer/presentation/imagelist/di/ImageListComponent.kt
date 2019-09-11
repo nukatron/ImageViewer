@@ -1,7 +1,7 @@
 package com.nutron.imageviewer.presentation.imagelist.di
 
 import com.nutron.imageviewer.data.datasource.ImageRepository
-import com.nutron.imageviewer.di.ImageListScope
+import com.nutron.imageviewer.module.di.ImageListScope
 import com.nutron.imageviewer.domain.GettingImageUseCase
 import com.nutron.imageviewer.domain.GettingImageUseCaseImpl
 import com.nutron.imageviewer.domain.ImageDataMapper

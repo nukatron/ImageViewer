@@ -1,11 +1,11 @@
 package com.nutron.imageviewer
 
 import android.app.Application
-import com.nutron.imageviewer.di.AppComponent
-import com.nutron.imageviewer.di.AppModule
-import com.nutron.imageviewer.di.DaggerAppComponent
-import com.nutron.imageviewer.di.DataSourceModule
-import com.nutron.imageviewer.di.NetworkModule
+import com.nutron.imageviewer.module.di.AppComponent
+import com.nutron.imageviewer.module.di.AppModule
+import com.nutron.imageviewer.module.di.DaggerAppComponent
+import com.nutron.imageviewer.module.di.DataSourceModule
+import com.nutron.imageviewer.module.di.NetworkModule
 
 
 class MainApplication: Application() {

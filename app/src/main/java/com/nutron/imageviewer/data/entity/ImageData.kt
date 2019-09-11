@@ -3,19 +3,26 @@ package com.nutron.imageviewer.data.entity
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class ImageData(
     @SerializedName("id") val id: String?,
+    @SerializedName("created_at") val createDate: Date,
     @SerializedName("description") val description: String?,
     @SerializedName("alt_description") val altDescription: String?,
+    @SerializedName("width") val width: Int,
+    @SerializedName("height") val height: Int,
     @SerializedName("likes") val like: Int,
     @SerializedName("urls") val urls: Urls,
     @SerializedName("user") val user: User
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
+        Date(parcel.readLong()),
         parcel.readString(),
         parcel.readString(),
+        parcel.readInt(),
+        parcel.readInt(),
         parcel.readInt(),
         parcel.readParcelable(Urls::class.java.classLoader),
         parcel.readParcelable(User::class.java.classLoader)
@@ -23,8 +30,11 @@ data class ImageData(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
+        parcel.writeLong(createDate.time)
         parcel.writeString(description)
         parcel.writeString(altDescription)
+        parcel.writeInt(width)
+        parcel.writeInt(height)
         parcel.writeInt(like)
         parcel.writeParcelable(urls, flags)
         parcel.writeParcelable(user, flags)

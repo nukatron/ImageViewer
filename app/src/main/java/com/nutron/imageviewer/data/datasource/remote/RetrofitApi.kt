@@ -1,5 +1,6 @@
 package com.nutron.imageviewer.data.datasource.remote
 
+import com.google.gson.GsonBuilder
 import com.nutron.imageviewer.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,9 +13,10 @@ import java.util.concurrent.TimeUnit
 class RetrofitApi {
 
     fun getApi(): ImageApi {
+        val gson = GsonBuilder().setDateFormat(DATE_FORMAT).create()
         return Retrofit.Builder()
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(
                 OkHttpClient.Builder()
                     .readTimeout(HTTP_TIMEOUT, TimeUnit.SECONDS)
