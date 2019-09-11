@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/high_margin"
+    android:layout_marginEnd="@dimen/high_margin"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cvg_tile_txt"
+        style="@style/txt_title_bold"
+        tools:text="Title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cvg_tile_detail_separator"
+        style="@style/txt_title_bold"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:text="@string/colon"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cvg_detail_text"
+        style="@style/txt_photo_detail"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        tools:text="details" />
+
+</LinearLayout>

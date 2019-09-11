@@ -1,9 +1,12 @@
 package com.nutron.imageviewer.di
 
+import android.content.Context
 import com.nutron.imageviewer.data.datasource.ImageDataSource
 import com.nutron.imageviewer.data.datasource.ImageRepository
 import com.nutron.imageviewer.data.datasource.ImageRepositoryImpl
 import com.nutron.imageviewer.data.datasource.ImageStoreDataSource
+import com.nutron.imageviewer.extdi.ImageLoader
+import com.nutron.imageviewer.extdi.ImageLoaderImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -20,6 +23,11 @@ class AppModule {
     ): ImageRepository {
         return ImageRepositoryImpl(localDataSource, remoteDataSource, imageStoreDataSource)
     }
+
+    @Provides
+    @AppScope
+    fun provideImageLoader(context: Context): ImageLoader =
+        ImageLoaderImpl(context)
 
 
 }

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/high_margin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".presentation.detail.ImageDetailActivity">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/detail_image_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ic_launcher_background" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/detail_user_data"
+            style="@style/txt_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/high_margin"
+            android:layout_marginTop="@dimen/high_margin"
+            android:text="Photo By"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_image_img" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/detail_user_profile_img"
+            android:layout_width="@dimen/user_profile_width"
+            android:layout_height="@dimen/user_profile_height"
+            android:layout_marginStart="@dimen/high_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            app:layout_constraintRight_toLeftOf="@+id/detail_user_name_txt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_user_data"
+            tools:srcCompat="@drawable/ic_avatar" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/detail_user_name_txt"
+            style="@style/txt_title_bold"
+            android:layout_marginStart="@dimen/medium_margin"
+            app:layout_constraintBottom_toTopOf="@+id/detail_user_social_account_txt"
+            app:layout_constraintStart_toEndOf="@+id/detail_user_profile_img"
+            app:layout_constraintTop_toTopOf="@+id/detail_user_profile_img"
+            tools:text="User Name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/detail_user_social_account_txt"
+            style="@style/txt_description_one_line"
+            android:layout_marginStart="@dimen/medium_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/detail_user_profile_img"
+            app:layout_constraintStart_toStartOf="@+id/detail_user_name_txt"
+            app:layout_constraintTop_toBottomOf="@+id/detail_user_name_txt"
+            tools:text="/@instagram" />
+
+        <View
+            android:id="@+id/detail_photo_detail_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/high_margin"
+            android:layout_marginTop="@dimen/high_margin"
+            android:layout_marginEnd="@dimen/high_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/color_dddddd"
+            app:layout_constraintTop_toBottomOf="@+id/detail_user_profile_img" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/detail_photo_data"
+            style="@style/txt_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/high_margin"
+            android:layout_marginTop="@dimen/high_margin"
+            android:text="Photo Details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_photo_detail_line" />
+
+        <LinearLayout
+            android:id="@+id/detail_photo_detail_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_photo_data" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -36,7 +36,7 @@ class ImageRepositoryImpl(
                         // in order to return 'element' to main steam, not 'completed'
                         .map { data }
                 } else {
-                    Observable.just(data)
+                    Observable.empty()
                 }
             }
     }

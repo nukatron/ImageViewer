@@ -7,6 +7,8 @@ import com.nutron.imageviewer.domain.GettingImageUseCaseImpl
 import com.nutron.imageviewer.domain.ImageDataMapper
 import com.nutron.imageviewer.domain.ImageDataMapperImpl
 import com.nutron.imageviewer.presentation.imagelist.ImageListActivity
+import com.nutron.imageviewer.presentation.imagelist.ImageListViewModel
+import com.nutron.imageviewer.presentation.imagelist.ImageListViewModelImpl
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -21,7 +23,7 @@ interface ImageListComponent {
     @Component.Builder
     interface Builder {
         fun parentComponent(parent: ImageListComponentParent): Builder
-        fun ImageListModule(module: ImageListModule): Builder
+        fun imageListModule(module: ImageListModule): Builder
         fun build(): ImageListComponent
     }
 }
@@ -31,7 +33,7 @@ class ImageListModule {
 
     @Provides
     @ImageListScope
-    fun provideImageDatamapper(): ImageDataMapper = ImageDataMapperImpl()
+    fun provideImageDataMapper(): ImageDataMapper = ImageDataMapperImpl()
 
     @Provides
     @ImageListScope
@@ -39,4 +41,10 @@ class ImageListModule {
         imageRepository: ImageRepository,
         dataMapper: ImageDataMapper
     ): GettingImageUseCase = GettingImageUseCaseImpl(imageRepository, dataMapper)
+
+    @Provides
+    @ImageListScope
+    fun provideImageListViewModel(
+        useCase: GettingImageUseCase
+    ): ImageListViewModel = ImageListViewModelImpl(useCase)
 }
