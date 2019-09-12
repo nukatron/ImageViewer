@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.nutron.imageviewer.R
 import com.nutron.imageviewer.module.ext.appComponent
 import com.nutron.imageviewer.module.extdi.ImageLoader
+import com.nutron.imageviewer.module.extdi.ResourceProvider
 import com.nutron.imageviewer.presentation.detail.di.DaggerImageDetailComponent
 import com.nutron.imageviewer.presentation.detail.di.ImageDetailComponentParent
 import com.nutron.imageviewer.presentation.detail.di.ImageDetailModule
@@ -26,6 +27,7 @@ class ImageDetailActivity : AppCompatActivity() {
 
     @Inject lateinit var imageLoader: ImageLoader
     @Inject lateinit var viewModel: ImageDetailViewModel
+    @Inject lateinit var resourceProvider: ResourceProvider
 
     private val detailFullImg by lazy<AppCompatImageView>{ findViewById(R.id.detail_image_img) }
     private val userProfileImg by lazy<AppCompatImageView> { findViewById(R.id.detail_user_profile_img) }
@@ -75,6 +77,7 @@ class ImageDetailActivity : AppCompatActivity() {
                 imageLoader.load(it)
                     .placeholder(R.drawable.ic_launcher_background)
                     .centerCrop()
+                    .resize(resourceProvider.screenWH().first, resourceProvider.screenWH().first)
                     .noFade()
                     .into(detailFullImg)
             }.addTo(disposeBag)

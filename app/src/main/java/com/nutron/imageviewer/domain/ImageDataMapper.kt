@@ -3,7 +3,6 @@ package com.nutron.imageviewer.domain
 import com.nutron.imageviewer.data.entity.ImageData
 import com.nutron.imageviewer.data.entity.User
 import com.nutron.imageviewer.presentation.entity.ImageUiData
-import java.util.*
 
 
 interface ImageDataMapper {
@@ -15,7 +14,7 @@ class ImageDataMapperImpl: ImageDataMapper {
     override fun mapToUiData(imageData: ImageData): ImageUiData {
         return ImageUiData(
             id = imageData.id ?: "",
-            createDate = imageData.createDate ?: Date(),
+            createDate = imageData.createDate,
             description = imageData.description ?: imageData.altDescription,
             width = imageData.width,
             height = imageData.height,

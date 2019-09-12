@@ -59,7 +59,7 @@ class ImageDetailViewModelImpl(
             shareDataObs.map { Pair(resourceProvider.getString(R.string.detail_image_description), it.description ?: noData) },
             shareDataObs.map { Pair(
                 resourceProvider.getString(R.string.detail_image_create_at),
-                it.createDate?.let { date -> resourceProvider.paseDate(date, SIMPLE_DATE_FORMAT) } ?: noData )
+                it.createDate?.let { date -> resourceProvider.parseDate(date, SIMPLE_DATE_FORMAT) } ?: noData )
             }
         )
     }

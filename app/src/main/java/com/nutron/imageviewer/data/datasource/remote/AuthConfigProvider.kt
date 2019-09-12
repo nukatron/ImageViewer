@@ -7,9 +7,11 @@ interface AuthConfigProvider {
     fun getAccessKey(): String
 }
 
-class AuthConfigProviderImpl(): AuthConfigProvider {
+class AuthConfigProviderImpl(
+    val token: () -> String = { BuildConfig.ACCESS_KEY }
+): AuthConfigProvider {
     override fun getAccessKey(): String {
-        return BuildConfig.ACCESS_KEY
+        return token()
     }
 
 }

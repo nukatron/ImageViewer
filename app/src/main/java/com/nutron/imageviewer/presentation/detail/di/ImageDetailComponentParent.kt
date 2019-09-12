@@ -7,5 +7,5 @@ import com.nutron.imageviewer.module.extdi.ResourceProvider
 interface ImageDetailComponentParent {
 
     fun provideImageLoader(): ImageLoader
-    fun provideResouceProvider(): ResourceProvider
+    fun provideResourceProvider(): ResourceProvider
 }
