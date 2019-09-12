@@ -6,6 +6,8 @@ import io.reactivex.Observable
 
 interface ImageRepository {
     fun getImage(): Observable<List<ImageData>>
+    fun fetchFromDisk(): Observable<List<ImageData>>
+    fun fetchFromRemote(): Observable<List<ImageData>>
 }
 
 class ImageRepositoryImpl(
@@ -18,11 +20,11 @@ class ImageRepositoryImpl(
         return Observable.concat(listOf(fetchFromDisk(), fetchFromRemote()))
     }
 
-    private fun fetchFromDisk(): Observable<List<ImageData>> {
+    override fun fetchFromDisk(): Observable<List<ImageData>> {
         return localDataSource.getImages()
     }
 
-    private fun fetchFromRemote(): Observable<List<ImageData>> {
+    override fun fetchFromRemote(): Observable<List<ImageData>> {
         return remoteDataSource
             .getImages()
             .flatMap { data ->

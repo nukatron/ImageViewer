@@ -46,23 +46,28 @@ class ImageListViewModelImpl(
 
     init {
         // prepare input trigger
-        val inputTrigger = Observable.merge(active, refresh).share()
+        val initTrigger = active.share()
+        val refreshTrigger = refresh.share()
 
         // prepare data source
-        val shareObservable = inputTrigger.observeOn(Schedulers.io())
+        val initShareObs = initTrigger.observeOn(Schedulers.io())
             .flatMap { gettingImageUseCase.getImages().materialize() }
             .share()
 
+        val refreshShareObs = refreshTrigger.observeOn(Schedulers.io())
+            .flatMap { gettingImageUseCase.fetchImages().materialize() }
+            .share()
+
         // prepare progress dialog trigger
-        val startActiveProgress = inputTrigger.map { true }
-        val stopActiveProgress = shareObservable.map { false }
+        val startActiveProgress = initTrigger.map { true }
+        val stopActiveProgress = initShareObs.map { false }
         observeShowProgress = Observable.merge(startActiveProgress, stopActiveProgress)
             .distinctUntilChanged()
 
         // prepare image output
-        observePhotos = shareObservable.elements()
+        observePhotos = Observable.merge(initShareObs.elements(), refreshShareObs.elements())
         // prepare error output
-        error = shareObservable.error()
+        error = Observable.merge(initShareObs.error(), refreshShareObs.error())
     }
 
 }

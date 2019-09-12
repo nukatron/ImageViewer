@@ -7,6 +7,7 @@ import io.reactivex.Observable
 
 interface GettingImageUseCase {
     fun getImages(): Observable<List<ImageUiData>>
+    fun fetchImages(): Observable<List<ImageUiData>>
 }
 
 class GettingImageUseCaseImpl(
@@ -16,6 +17,12 @@ class GettingImageUseCaseImpl(
 
     override fun getImages(): Observable<List<ImageUiData>> {
         return imageRepository.getImage().map { list ->
+            list.map { imageDataMapper.mapToUiData(it) }
+        }
+    }
+
+    override fun fetchImages(): Observable<List<ImageUiData>> {
+        return imageRepository.fetchFromRemote().map { list ->
             list.map { imageDataMapper.mapToUiData(it) }
         }
     }

@@ -76,20 +76,23 @@ class ImageListActivity : AppCompatActivity(), OnImageListItemClickListener, Swi
     fun initOutput() {
         viewModel.output.observePhotos
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(viewAdapter::updateData)
+            .subscribe {
+                viewAdapter.updateData(it)
+                snackbar?.takeIf { snb -> snb.isShown }?.dismiss()
+                swipeRefreshLayout.isRefreshing = false
+            }
             .addTo(disposeBag)
 
         viewModel.output.observeShowProgress
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                swipeRefreshLayout.isRefreshing = it
                 progressBar.visibility = if(it) View.VISIBLE else View.INVISIBLE
             }.addTo(disposeBag)
 
         viewModel.output.error
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                Log.e(TAG, "error: ${it.message}")
+                swipeRefreshLayout.isRefreshing = false
                 snackbar = Snackbar.make(rootContainer, "error: ${it.message}", Snackbar.LENGTH_INDEFINITE)
                     .setAction(R.string.label_ok) {
                         snackbar?.dismiss()
