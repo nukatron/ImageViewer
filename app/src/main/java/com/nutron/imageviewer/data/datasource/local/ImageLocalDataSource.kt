@@ -6,10 +6,9 @@ import com.nutron.imageviewer.data.entity.ImageData
 import com.nutron.imageviewer.data.entity.ImageDataRealm
 import io.reactivex.Completable
 import io.reactivex.Observable
-import io.realm.Realm
 
 
-class ImageLocalDataSource: ImageDataSource, ImageStoreDataSource {
+class ImageLocalDataSource(val realmHelper: RealmHelper): ImageDataSource, ImageStoreDataSource {
 
 
     /**
@@ -17,24 +16,20 @@ class ImageLocalDataSource: ImageDataSource, ImageStoreDataSource {
      * We change change to use Room, Realm or any other tools for storing data without any effect to the presentation layout
      */
     override fun getImages(): Observable<List<ImageData>> {
-        val realm = Realm.getDefaultInstance()
-        return realm.use {
+        val data = realmHelper.query { realm ->
             val result = realm.where(ImageDataRealm::class.java).findAll()
-            val list = realm.copyFromRealm(result).map { it.realmToData() }
-            list.takeIf { it.isNotEmpty() }?.let { Observable.just(it) } ?: Observable.empty()
+            realm.copyFromRealm(result).map { it.realmToData() }
         }
+        return data.takeIf { it.isNotEmpty() }?.let { Observable.just(it) } ?: Observable.empty()
     }
 
     override fun saveImages(data: List<ImageData>): Completable {
         return Completable.fromAction {
-            val realm = Realm.getDefaultInstance()
-            realm.use {
-                realm.beginTransaction()
+            realmHelper.save { realm ->
                 for (image in data) {
                     val imageRealm = ImageDataRealm().dataToRealm(image)
                     realm.copyToRealmOrUpdate(imageRealm)
                 }
-                realm.commitTransaction()
             }
         }
     }

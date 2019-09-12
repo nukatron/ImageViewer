@@ -1,10 +1,11 @@
 package com.nutron.imageviewer.module.di
 
 import android.content.Context
-import com.google.gson.Gson
 import com.nutron.imageviewer.data.datasource.ImageDataSource
 import com.nutron.imageviewer.data.datasource.ImageStoreDataSource
 import com.nutron.imageviewer.data.datasource.local.ImageLocalDataSource
+import com.nutron.imageviewer.data.datasource.local.RealmHelper
+import com.nutron.imageviewer.data.datasource.local.RealmHelperImpl
 import com.nutron.imageviewer.data.datasource.local.SharePrefDataSource
 import com.nutron.imageviewer.data.datasource.local.SharePrefDataSourceImpl
 import com.nutron.imageviewer.data.datasource.remote.AuthConfigProvider
@@ -24,8 +25,14 @@ class DataSourceModule {
 
     @Provides
     @AppScope
+    fun provideRealmHelper(): RealmHelper = RealmHelperImpl()
+
+    @Provides
+    @AppScope
     @Named(DI_NAME_VALUE_LOCAL_DATA_SOURCE)
-    fun provideImageLocalDataSource(): ImageDataSource = ImageLocalDataSource()
+    fun provideImageLocalDataSource(
+        realmHelper: RealmHelper
+    ): ImageDataSource = ImageLocalDataSource(realmHelper)
 
     @Provides
     @AppScope
