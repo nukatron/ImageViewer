@@ -7,18 +7,18 @@ import java.util.*
 
 data class ImageData(
     @SerializedName("id") val id: String?,
-    @SerializedName("created_at") val createDate: Date,
+    @SerializedName("created_at") val createDate: Date?,
     @SerializedName("description") val description: String?,
     @SerializedName("alt_description") val altDescription: String?,
     @SerializedName("width") val width: Int,
     @SerializedName("height") val height: Int,
     @SerializedName("likes") val like: Int,
-    @SerializedName("urls") val urls: Urls,
-    @SerializedName("user") val user: User
+    @SerializedName("urls") val urls: Urls?,
+    @SerializedName("user") val user: User?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        Date(parcel.readLong()),
+        parcel.readLong().takeIf { it > 0 }?.let { Date(parcel.readLong()) },
         parcel.readString(),
         parcel.readString(),
         parcel.readInt(),
@@ -30,7 +30,7 @@ data class ImageData(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
-        parcel.writeLong(createDate.time)
+        parcel.writeLong(createDate?.time ?: -1)
         parcel.writeString(description)
         parcel.writeString(altDescription)
         parcel.writeInt(width)
@@ -87,7 +87,7 @@ data class Urls(
 data class User(
     @SerializedName("id") val id: String?,
     @SerializedName("name") val name: String?,
-    @SerializedName("profile_image") val profile: UserProfile,
+    @SerializedName("profile_image") val profile: UserProfile?,
     @SerializedName("twitter_username") val twitterUserName: String?,
     @SerializedName("instagram_username") val instagramUserName: String?
 ): Parcelable {

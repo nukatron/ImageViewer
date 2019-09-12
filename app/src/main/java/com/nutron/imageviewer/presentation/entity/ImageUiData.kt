@@ -7,7 +7,7 @@ import java.util.*
 
 data class ImageUiData(
     val id: String,
-    val createDate: Date,
+    val createDate: Date?,
     val description: String?,
     val width: Int = 0,
     val height: Int = 0,
@@ -22,7 +22,7 @@ data class ImageUiData(
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
-        Date(parcel.readLong()),
+        parcel.readLong().takeIf { it > 0L }?.let { Date(it) },
         parcel.readString(),
         parcel.readInt(),
         parcel.readInt(),
@@ -37,7 +37,7 @@ data class ImageUiData(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
-        parcel.writeLong(createDate.time)
+        parcel.writeLong(createDate?.time ?: -1L)
         parcel.writeString(description)
         parcel.writeInt(width)
         parcel.writeInt(height)

@@ -75,6 +75,7 @@ class ImageDetailActivity : AppCompatActivity() {
                 imageLoader.load(it)
                     .placeholder(R.drawable.ic_launcher_background)
                     .centerCrop()
+                    .noFade()
                     .into(detailFullImg)
             }.addTo(disposeBag)
 
@@ -111,34 +112,6 @@ class ImageDetailActivity : AppCompatActivity() {
         super.onDestroy()
         disposeBag.clear()
     }
-
-//    private fun initView() {
-//        if(intent.hasExtra(EXTRA_IMAGE_DATA)) {
-//            imageData = intent.getParcelableExtra(EXTRA_IMAGE_DATA)
-//        }
-//
-//        imageData?.let { data ->
-//            imageLoader.load(data.imageUrl)
-//                .placeholder(R.drawable.ic_launcher_background)
-//                .centerCrop()
-//                .into(detailFullImg)
-//
-//            imageLoader.load(data.userProfileThumbnail)
-//                .placeholder(R.drawable.ic_avatar)
-//                .circleCrop()
-//                .into(userProfileImg)
-//
-//            userName.text = data.username
-//            userSocialAccount.text = data.username
-//            detailContainer.apply {
-//                addView(createTitleDetailCustomView("Id", data.id))
-//                addView(createTitleDetailCustomView("Likes", data.likes.toString()))
-//                addView(createTitleDetailCustomView("Description", data.description ?: "-"))
-//                addView(createTitleDetailCustomView("ThumbnailUrl", data.thumbnail))
-//                addView(createTitleDetailCustomView("ImageUrl", data.imageUrl))
-//            }
-//        }
-//    }
 
     private fun createTitleDetailCustomView(
         title: String,

@@ -25,10 +25,7 @@ class DataSourceModule {
     @Provides
     @AppScope
     @Named(DI_NAME_VALUE_LOCAL_DATA_SOURCE)
-    fun provideImageLocalDataSource(
-        pref: SharePrefDataSource,
-        gson: Gson
-    ): ImageDataSource = ImageLocalDataSource(pref, gson)
+    fun provideImageLocalDataSource(): ImageDataSource = ImageLocalDataSource()
 
     @Provides
     @AppScope
@@ -43,4 +40,5 @@ class DataSourceModule {
         imageApi: ImageApi,
         authConfigProvider: AuthConfigProvider
     ): ImageDataSource = ImageRemoteDataSource(imageApi, authConfigProvider)
+
 }
