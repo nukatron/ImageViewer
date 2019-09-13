@@ -29,11 +29,12 @@ class ImageRepositoryTest {
         val localData = listOf(
             mockDataProvider.provideImageData().copy(id = "local-1"),
             mockDataProvider.provideImageData().copy(id = "local-2")
-        )
+        ).sortedBy { it.createDate }
         val remoteData = listOf(
             mockDataProvider.provideImageData().copy(id = "remote-1"),
             mockDataProvider.provideImageData().copy(id = "remote-2")
-        )
+        ).sortedBy { it.createDate }
+
         doReturn(Observable.just(localData)).whenever(localSource).getImages()
         doReturn(Observable.just(remoteData)).whenever(remoteSource).getImages()
         doReturn(Completable.complete()).whenever(storeSource).saveImages(any())
@@ -48,7 +49,8 @@ class ImageRepositoryTest {
         val localData = listOf(
             mockDataProvider.provideImageData().copy(id = "local-1"),
             mockDataProvider.provideImageData().copy(id = "local-2")
-        )
+        ).sortedBy { it.createDate }
+
         val remoteData = listOf<ImageData>()
         doReturn(Observable.just(localData)).whenever(localSource).getImages()
         doReturn(Observable.just(remoteData)).whenever(remoteSource).getImages()
