@@ -76,7 +76,7 @@ class ImageListActivity : AppCompatActivity(), OnImageListItemClickListener, Swi
         viewModel.input.refresh.accept(Unit)
     }
 
-    fun initOutput() {
+    private fun initOutput() {
         viewModel.output.observePhotos
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {

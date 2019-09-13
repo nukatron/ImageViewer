@@ -16,22 +16,21 @@ class ImageLocalDataSource(val realmHelper: RealmHelper): ImageDataSource, Image
      * We change change to use Room, Realm or any other tools for storing data without any effect to the presentation layout
      */
     override fun getImages(): Observable<List<ImageData>> {
-        val data = realmHelper.query { realm ->
-            val result = realm.where(ImageDataRealm::class.java).findAll()
-            realm.copyFromRealm(result).map { it.realmToData() }
-        }
+        val data = realmHelper.query<ImageDataRealm, ImageData>(ImageDataRealm::class.java)
+        realmHelper.close()
         return data.takeIf { it.isNotEmpty() }?.let { Observable.just(it) } ?: Observable.empty()
     }
 
     override fun saveImages(data: List<ImageData>): Completable {
         return Completable.fromAction {
-            realmHelper.save { realm ->
-                realm.delete(ImageDataRealm::class.java)
-                for (image in data) {
-                    val imageRealm = ImageDataRealm().dataToRealm(image)
-                    realm.copyToRealmOrUpdate(imageRealm)
-                }
+            realmHelper.beginTransaction()
+            realmHelper.clear(ImageDataRealm::class.java)
+            for (image in data) {
+                val imageRealm = ImageDataRealm().dataToRealm(image)
+                realmHelper.upsert(imageRealm)
             }
+            realmHelper.commitTransaction()
+            realmHelper.close()
         }
     }
 }

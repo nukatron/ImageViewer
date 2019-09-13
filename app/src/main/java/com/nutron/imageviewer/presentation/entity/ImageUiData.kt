@@ -2,7 +2,7 @@ package com.nutron.imageviewer.presentation.entity
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.util.*
+import java.util.Date
 
 
 data class ImageUiData(

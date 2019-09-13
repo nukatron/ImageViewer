@@ -14,7 +14,7 @@ class BundleSavedState : View.BaseSavedState {
         bundle = parcel.readBundle()
     }
 
-    constructor(superState: Parcelable): super(superState)
+    constructor(superState: Parcelable?): super(superState)
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         super.writeToParcel(parcel, flags)

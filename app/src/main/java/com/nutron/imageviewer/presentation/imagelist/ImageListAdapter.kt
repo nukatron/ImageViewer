@@ -80,7 +80,10 @@ class ImageListAdapter(
         }
     }
 
-    class ImageDiffUtilCallBack(val newList: List<ImageUiData>, val oldList: List<ImageUiData>): DiffUtil.Callback() {
+    class ImageDiffUtilCallBack(
+        private val newList: List<ImageUiData>,
+        private val oldList: List<ImageUiData>
+    ): DiffUtil.Callback() {
 
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

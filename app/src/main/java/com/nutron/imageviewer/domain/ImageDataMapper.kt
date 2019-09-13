@@ -21,7 +21,7 @@ class ImageDataMapperImpl: ImageDataMapper {
             likes = imageData.like,
             thumbnail = imageData.urls?.thumbnail ?: "",
             imageUrl = imageData.urls?.regular ?: "",
-            username = getUserName(imageData?.user),
+            username = getUserName(imageData.user),
             userSocialAccount = getSocialAccount(imageData.user),
             userProfileThumbnail = imageData.user?.profile?.small,
             userProfile = imageData.user?.profile?.medium

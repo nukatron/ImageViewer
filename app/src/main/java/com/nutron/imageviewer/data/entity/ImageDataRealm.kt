@@ -5,7 +5,6 @@ import io.realm.annotations.PrimaryKey
 import java.util.*
 
 interface RealmDataConverter<D, R> {
-
     fun dataToRealm(data: D) : R
     fun realmToData(): D
 }
