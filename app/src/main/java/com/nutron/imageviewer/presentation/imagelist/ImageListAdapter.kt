@@ -3,6 +3,7 @@ package com.nutron.imageviewer.presentation.imagelist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.DiffUtil
@@ -12,7 +13,7 @@ import com.nutron.imageviewer.module.extdi.ImageLoader
 import com.nutron.imageviewer.presentation.entity.ImageUiData
 
 interface OnImageListItemClickListener {
-    fun onImageItemClickListener(position: Int, data: ImageUiData)
+    fun onImageItemClickListener(position: Int, data: ImageUiData, view: ImageView)
 }
 
 class ImageListAdapter(
@@ -40,7 +41,7 @@ class ImageListAdapter(
         holder.bindData(imageList[position])
         holder.view.setOnClickListener {
             val adapterPosition = holder.adapterPosition
-            extListener.onImageItemClickListener(adapterPosition, imageList[adapterPosition])
+            extListener.onImageItemClickListener(adapterPosition, imageList[adapterPosition], holder.imageView)
         }
     }
 
@@ -60,7 +61,6 @@ class ImageListAdapter(
         fun bindData(data: ImageUiData) {
             imageLoader.load(data.imageUrl)
                 .placeholder(R.drawable.ic_launcher_background)
-                .centerCrop()
                 .into(imageView)
 
             imageLoader.load(data.userProfileThumbnail)

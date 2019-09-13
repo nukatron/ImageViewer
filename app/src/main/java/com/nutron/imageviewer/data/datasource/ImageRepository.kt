@@ -21,12 +21,13 @@ class ImageRepositoryImpl(
     }
 
     override fun fetchFromDisk(): Observable<List<ImageData>> {
-        return localDataSource.getImages()
+        return localDataSource.getImages().map { it.sortedBy { item -> item.createDate } }
     }
 
     override fun fetchFromRemote(): Observable<List<ImageData>> {
         return remoteDataSource
             .getImages()
+            .map { it.sortedBy { item -> item.createDate } }
             .flatMap { data ->
                 if(data.isNotEmpty()) {
                     storeImageDataSource.saveImages(data)

@@ -26,6 +26,7 @@ class ImageLocalDataSource(val realmHelper: RealmHelper): ImageDataSource, Image
     override fun saveImages(data: List<ImageData>): Completable {
         return Completable.fromAction {
             realmHelper.save { realm ->
+                realm.delete(ImageDataRealm::class.java)
                 for (image in data) {
                     val imageRealm = ImageDataRealm().dataToRealm(image)
                     realm.copyToRealmOrUpdate(imageRealm)

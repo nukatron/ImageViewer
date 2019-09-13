@@ -34,7 +34,7 @@ interface ImageLoader {
 
 interface ImageRequester {
     fun placeholder(@DrawableRes resId: Int): ImageRequester
-    fun placeHolder(drawable: Drawable): ImageRequester
+    fun placeholder(drawable: Drawable): ImageRequester
     fun error(@DrawableRes resId: Int): ImageRequester
     fun fit(): ImageRequester
     fun centerCrop(): ImageRequester
@@ -61,7 +61,7 @@ abstract class GlideImageRequester(
         deferOptions = deferOptions.placeholder(resId)
     }
 
-    override fun placeHolder(drawable: Drawable): ImageRequester = also {
+    override fun placeholder(drawable: Drawable): ImageRequester = also {
         deferOptions = deferOptions.placeholder(drawable)
     }
 

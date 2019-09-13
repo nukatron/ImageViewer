@@ -2,6 +2,7 @@ package com.nutron.imageviewer.presentation.detail
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -49,8 +50,10 @@ class ImageDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_detail)
+        supportPostponeEnterTransition()
 
         initDependencies()
+        initView()
         initOutput()
         initInput()
     }
@@ -63,10 +66,17 @@ class ImageDetailActivity : AppCompatActivity() {
             .inject(this)
     }
 
-    private fun initInput() {
+    private fun initView() {
         if(intent.hasExtra(EXTRA_IMAGE_DATA)) {
             imageData = intent.getParcelableExtra(EXTRA_IMAGE_DATA)
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            imageData?.let { detailFullImg.transitionName = it.id }
+        }
+    }
+
+    private fun initInput() {
         imageData?.let { viewModel.input.initData.accept(it) }
     }
 
@@ -74,10 +84,10 @@ class ImageDetailActivity : AppCompatActivity() {
         viewModel.output.observePhoto
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
+                supportStartPostponedEnterTransition()
                 imageLoader.load(it)
-                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.placeholder)
                     .centerCrop()
-                    .resize(resourceProvider.screenWH().first, resourceProvider.screenWH().first)
                     .noFade()
                     .into(detailFullImg)
             }.addTo(disposeBag)
